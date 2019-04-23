@@ -30,4 +30,11 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    // Dependencies for local unit tests
+    testImplementation "io.mockk:mockk:${MOCKK_VERSION}"
+    testImplementation "org.powermock:powermock-module-junit4-rule:${POWERMOCK_VERSION}"
+    testImplementation "org.powermock:powermock-module-junit4:${POWERMOCK_VERSION}"
+    testImplementation "org.powermock:powermock-api-mockito2:${POWERMOCK_VERSION}"
+    testImplementation "org.powermock:powermock-classloading-xstream:${POWERMOCK_VERSION}"
 }
