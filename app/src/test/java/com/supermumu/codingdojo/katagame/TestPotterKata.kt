@@ -14,7 +14,7 @@ class TestPotterKata {
     }
 
     @Test
-    fun `Test getGameName()`() {
+    fun `Test getGameName() return "Potter" `() {
         val name = potter.getGameName()
 
         Assert.assertEquals("Potter", name)
