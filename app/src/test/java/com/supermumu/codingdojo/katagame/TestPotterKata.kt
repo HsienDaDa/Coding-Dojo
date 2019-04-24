@@ -76,4 +76,19 @@ class TestPotterKata {
         Assert.assertEquals(295, price)
     }
 
+    @Test
+    fun `Test getBooksPrice when 0 book then return 0 `() {
+        val bookList: List<Int> = listOf()
+        val price = potter.getBooksPrice(bookList)
+
+        Assert.assertEquals(0, price)
+    }
+
+    @Test
+    fun `Test getBooksPrice sorted`() {
+        val bookList: List<Int> = listOf(1, 8, 2)
+        val price = potter.getBooksPrice(bookList)
+
+        Assert.assertEquals(295, price)
+    }
 }
