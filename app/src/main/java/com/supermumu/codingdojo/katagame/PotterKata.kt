@@ -1,6 +1,9 @@
 package com.supermumu.codingdojo.katagame
 
 class PotterKata {
+    
+    private val bookPrice = 100
+    
     fun getGameName(): String {
         return "Potter"
     }
@@ -8,22 +11,25 @@ class PotterKata {
     fun getBooksPrice(bookList: List<Int>): Int {
         return when {
             bookList.isEmpty() -> 0
-            bookList.size == 1 -> 100
+            bookList.size == 1 -> bookPrice
             else -> {
                 val sortedList = bookList.sorted()
-                var discount = 1F
-                var price = 100
+                var discount: Float
+                var totalPrice = bookPrice
                 sortedList.forEachIndexed { index, vol ->
+                    val price = bookPrice
                     if (index == 0) {
                         return@forEachIndexed
                     }
                     val prevVol = sortedList[index - 1]
-                    if (vol - prevVol == 1) {
-                        discount = 1F - 0.05F
+                    discount = if (vol - prevVol == 1) {
+                        1F - 0.05F
+                    } else {
+                        1F
                     }
-                    price += (price * discount).toInt()
+                    totalPrice += (price * discount).toInt()
                 }
-                return price
+                return totalPrice
             }
         }
     }
