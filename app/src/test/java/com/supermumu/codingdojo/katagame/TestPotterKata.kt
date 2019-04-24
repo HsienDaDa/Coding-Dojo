@@ -19,4 +19,12 @@ class TestPotterKata {
 
         Assert.assertEquals("Potter", name)
     }
+
+    @Test
+    fun `Test getBooksPrice() if one book price return 100`() {
+        val bookList: List<Int> = listOf(1)
+        val price = potter.getBooksPrice(bookList)
+
+        Assert.assertEquals(price, 100)
+    }
 }
