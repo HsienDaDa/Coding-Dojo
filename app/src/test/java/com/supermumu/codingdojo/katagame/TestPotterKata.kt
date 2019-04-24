@@ -91,4 +91,21 @@ class TestPotterKata {
 
         Assert.assertEquals(295, price)
     }
+
+    @Test
+    fun `Test getBooksPrice 連續兩本連續 中間不連續`() {
+        val bookList: List<Int> = listOf(1, 2, 4, 6, 7)
+        val price = potter.getBooksPrice(bookList)
+
+        Assert.assertEquals(490, price)
+    }
+
+    @Test
+    fun `Test getBooksPrice `() {
+        val bookList: List<Int> = listOf(1, 2, 3, 1, 2, 3)
+        val price = potter.getBooksPrice(bookList)
+
+        Assert.assertEquals(585, price)
+    }
+
 }
