@@ -27,4 +27,12 @@ class TestPotterKata {
 
         Assert.assertEquals(price, 100)
     }
+
+    @Test
+    fun `Test getBooksPrice() if two continuous book price return 195`() {
+        val bookList: List<Int> = listOf(1,2)
+        val price = potter.getBooksPrice(bookList)
+
+        Assert.assertEquals(price, 195)
+    }
 }
