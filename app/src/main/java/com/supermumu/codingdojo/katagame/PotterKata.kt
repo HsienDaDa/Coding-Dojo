@@ -12,7 +12,7 @@ class PotterKata {
         return "Potter"
     }
 
-    fun getBooksPrice(bookList: List<Int>, defDiscount: Int = DEFAULT_DISCOUNT, defStep: Int = DISCOUNT_STEP): Int {
+    fun getBooksPrice2(bookList: List<Int>, defDiscount: Int = DEFAULT_DISCOUNT, defStep: Int = DISCOUNT_STEP): Int {
         return when {
             bookList.isEmpty() -> 0
             bookList.size == 1 -> BOOK_PRICE
@@ -40,6 +40,51 @@ class PotterKata {
                     totalPrice += (price * volDiscount) / 100
                 }
                 return totalPrice
+            }
+        }
+    }
+
+    fun getBooksPrice(bookList: List<Int>, defDiscount: Int = PotterKata.DEFAULT_DISCOUNT, defStep: Int = PotterKata.DISCOUNT_STEP): Int {
+        return when {
+            bookList.isEmpty() -> 0
+            bookList.size == 1 -> PotterKata.BOOK_PRICE
+            else -> {
+                val sortedList = bookList.sorted()
+                var discount = defDiscount
+
+//                sortedList.forEachIndexed { index, vol ->
+//                    val price = PotterKata.BOOK_PRICE
+//                    if (index == 0) return@forEachIndexed
+//
+//                    val prevVol = sortedList[index - 1]
+//                    discount = if (vol - prevVol == 1) {
+//                        discount - defStep
+//                    } else {
+//                        defDiscount
+//                    }
+//                    totalPrice += (price * discount) / 100
+//                }
+
+                var totalDiscount = 100
+                sortedList.forEachIndexed { index, vol ->
+                    if (index == 0) return@forEachIndexed
+
+                    val prevVol = sortedList[index - 1]
+                    val volDiscount = when {
+                        vol - prevVol == 1 -> {
+                            discount -= defStep
+                            discount
+                        }
+                        vol == prevVol -> defDiscount
+                        else -> {
+                            discount = defDiscount
+                            defDiscount
+                        }
+                    }
+                    totalDiscount += volDiscount
+                }
+
+                return PotterKata.BOOK_PRICE * totalDiscount / 100
             }
         }
     }
