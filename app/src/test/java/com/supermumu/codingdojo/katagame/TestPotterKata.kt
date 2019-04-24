@@ -43,4 +43,20 @@ class TestPotterKata {
 
         Assert.assertEquals(200, price)
     }
+
+    @Test
+    fun `Test getBooksPrice when two books 不連續 then return 200 `() {
+        val bookList: List<Int> = listOf(1, 3)
+        val price = potter.getBooksPrice(bookList)
+
+        Assert.assertEquals(200, price)
+    }
+
+    @Test
+    fun `Test getBooksPrice when three books 兩本連續 1本不連續 then return 295 `() {
+        val bookList: List<Int> = listOf(1, 2, 4)
+        val price = potter.getBooksPrice(bookList)
+
+        Assert.assertEquals(295, price)
+    }
 }
