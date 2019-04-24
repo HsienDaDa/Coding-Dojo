@@ -11,22 +11,19 @@ class PotterKata {
             bookList.size == 1 -> 100
             else -> {
                 val sortedList = bookList.sorted()
-                val discount
+                var discount = 1F
                 var price = 100
-                    sortedList.forEachIndexed { index, vol ->
-                        if (index == 0) {
-                            return@forEachIndexed
-                        }
-                        val prevVol = sortedList[index-1]
-                        if (vol - prevVol == 1) {
-
-                        }
-
-
-
+                sortedList.forEachIndexed { index, vol ->
+                    if (index == 0) {
+                        return@forEachIndexed
                     }
-
-                price
+                    val prevVol = sortedList[index - 1]
+                    if (vol - prevVol == 1) {
+                        discount = 1F - 0.05F
+                    }
+                    price += (price * discount).toInt()
+                }
+                return price
             }
         }
     }
